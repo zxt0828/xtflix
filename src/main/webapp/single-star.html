@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Xtflix - Star Details</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .star-header {
+      margin-bottom: 32px;
+    }
+
+    .star-name {
+      font-size: 32px;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 6px;
+    }
+
+    .star-meta {
+      color: #7d8590;
+      font-size: 15px;
+    }
+
+    .star-id {
+      color: #484f58;
+      font-size: 13px;
+      font-family: monospace;
+      margin-top: 4px;
+    }
+
+    .detail-section {
+      margin-bottom: 24px;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #7d8590;
+      margin-bottom: 8px;
+    }
+
+    .movies-list {
+      list-style: none;
+    }
+
+    .movies-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .movies-list li:last-child {
+      border-bottom: none;
+    }
+
+    .movie-link {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .movie-link:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      color: #484f58;
+      font-style: italic;
+      padding: 40px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a class="back-link" href="javascript:history.back()">&larr; Back</a>
+
+  <div id="star-detail">
+    <p class="loading">Loading star details...</p>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/single-star.js"></script>
+</body>
+</html>

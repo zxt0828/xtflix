@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Xtflix - Top 20 Movies</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #f0f6fc;
+    }
+
+    .subtitle {
+      color: #7d8590;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #7d8590;
+      border-bottom: 1px solid #21262d;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #21262d;
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover {
+      background: #161b22;
+    }
+
+    tbody td {
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #c9d1d9;
+      vertical-align: top;
+    }
+
+    /* Column widths */
+    th:nth-child(1), td:nth-child(1) { width: 40px; text-align: center; }
+    th:nth-child(2), td:nth-child(2) { width: 20%; }
+    th:nth-child(3), td:nth-child(3) { width: 60px; }
+    th:nth-child(4), td:nth-child(4) { width: 15%; }
+    th:nth-child(5), td:nth-child(5) { width: 18%; }
+    th:nth-child(6), td:nth-child(6) { width: 22%; }
+    th:nth-child(7), td:nth-child(7) { width: 70px; text-align: center; }
+
+    .movie-rank {
+      color: #484f58;
+      font-weight: 500;
+    }
+
+    .movie-title a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .movie-title a:hover {
+      text-decoration: underline;
+    }
+
+    .movie-year {
+      color: #7d8590;
+    }
+
+    .movie-director {
+      color: #c9d1d9;
+    }
+
+    .genre-tag {
+      display: inline-block;
+      background: #1c2333;
+      color: #8b949e;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+    }
+
+    .star-link {
+      color: #d2a8ff;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .star-link:hover {
+      text-decoration: underline;
+    }
+
+    .star-separator {
+      color: #484f58;
+      font-size: 12px;
+      margin: 0 2px;
+    }
+
+    .rating-badge {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .loading {
+      text-align: center;
+      color: #484f58;
+      padding: 40px 16px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Top 20 Movies</h1>
+  <p class="subtitle">Ranked by rating from the Xtflix database</p>
+
+  <table id="movie-table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Director</th>
+      <th>Genres</th>
+      <th>Stars</th>
+      <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody id="movie-body">
+    <tr>
+      <td colspan="7" class="loading">Loading movies...</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/movie-list.js"></script>
+</body>
+</html>

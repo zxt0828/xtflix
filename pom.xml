@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- 项目身份信息，相当于项目的"身份证" -->
+  <groupId>com.xtflix</groupId>        <!-- 组织名，一般用反转域名 -->
+  <artifactId>xtflix</artifactId>      <!-- 项目名 -->
+  <version>1.0-SNAPSHOT</version>      <!-- 版本号 -->
+  <packaging>war</packaging>           <!-- 打包成 WAR 部署到 Tomcat，Spring Boot 用 jar -->
+
+  <!-- 全局配置 -->
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>   <!-- 用 Java 11 编译 -->
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- 依赖：这个项目需要用到的第三方库 -->
+  <dependencies>
+    <!-- Servlet API：写 HttpServlet 必须的 -->
+    <!-- scope=provided 表示 Tomcat 自带这个库，打包时不放进 WAR -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- MySQL JDBC 驱动：让 Java 能连接 MySQL 数据库 -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>9.1.0</version>
+    </dependency>
+
+    <!-- Gson：Google 的 JSON 库，把 Java 对象转成 JSON 字符串返回给前端 -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
+  </dependencies>
+
+  <!-- 构建配置 -->
+  <build>
+    <finalName>xtflix</finalName>    <!-- WAR 文件名，决定访问路径 /xtflix/ -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
