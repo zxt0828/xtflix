@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>xtflix - Search</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #e94560;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .search-form {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background: #1a1a2e;
+      padding: 30px;
+      border-radius: 12px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #a0a0b0;
+      font-size: 14px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #16213e;
+      color: #e0e0e0;
+      font-size: 15px;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: #e94560;
+    }
+    .search-btn {
+      width: 100%;
+      padding: 12px;
+      background: #e94560;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .search-btn:hover {
+      background: #c73652;
+    }
+
+    /* 排序和分页控件 */
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto 15px;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .controls select {
+      padding: 8px 12px;
+      background: #16213e;
+      color: #e0e0e0;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+    .controls select:focus {
+      border-color: #e94560;
+    }
+    .sort-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .sort-group label {
+      color: #a0a0b0;
+      font-size: 13px;
+    }
+    .pagination {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .page-btn {
+      padding: 8px 16px;
+      background: #16213e;
+      color: #e0e0e0;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .page-btn:hover {
+      background: #e94560;
+      color: white;
+      border-color: #e94560;
+    }
+    .page-btn.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .page-info {
+      color: #a0a0b0;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    th {
+      background: #1a1a2e;
+      color: #e94560;
+      padding: 12px 15px;
+      text-align: left;
+      font-size: 14px;
+    }
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #1a1a2e;
+      font-size: 14px;
+    }
+    tr:hover { background: rgba(233, 69, 96, 0.05); }
+    a { color: #e94560; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .genre-tag {
+      display: inline-block;
+      background: #16213e;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 2px;
+      font-size: 12px;
+      color: #a0a0b0;
+      text-decoration: none;
+    }
+    .genre-tag:hover {
+      background: #e94560;
+      color: white;
+    }
+    #result-count {
+      text-align: center;
+      color: #a0a0b0;
+      margin-bottom: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<h1>xtflix Search</h1>
+
+<div class="search-form">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" id="title" placeholder="e.g. Star Wars">
+  </div>
+  <div class="form-group">
+    <label>Year</label>
+    <input type="number" id="year" placeholder="e.g. 2000">
+  </div>
+  <div class="form-group">
+    <label>Director</label>
+    <input type="text" id="director" placeholder="e.g. Spielberg">
+  </div>
+  <div class="form-group">
+    <label>Star Name</label>
+    <input type="text" id="star" placeholder="e.g. Tom Hanks">
+  </div>
+  <button class="search-btn" id="search-btn">Search</button>
+</div>
+
+<p id="result-count"></p>
+
+<!-- 排序和分页控件 -->
+<div class="controls" id="controls">
+  <div class="sort-group">
+    <label>Sort by:</label>
+    <select id="sort-by">
+      <option value="rating">Rating</option>
+      <option value="title">Title</option>
+    </select>
+    <select id="sort-order">
+      <option value="desc">Descending</option>
+      <option value="asc">Ascending</option>
+    </select>
+    <label>Per page:</label>
+    <select id="per-page">
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+  <div class="pagination">
+    <span class="page-btn" id="prev-btn">&larr; Prev</span>
+    <span class="page-info" id="page-info">Page 1</span>
+    <span class="page-btn" id="next-btn">Next &rarr;</span>
+  </div>
+</div>
+
+<table id="movie-table" style="display:none;">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th>Genres</th>
+    <th>Stars</th>
+    <th>Rating</th>
+  </tr>
+  </thead>
+  <tbody id="movie-body">
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

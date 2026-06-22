@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>xtflix - Browse</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #e94560;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .browse-section {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      background: #1a1a2e;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .section-title {
+      color: #a0a0b0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+    .genre-link, .title-link {
+      display: inline-block;
+      background: #16213e;
+      color: #e0e0e0;
+      padding: 10px 20px;
+      margin: 6px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .title-link {
+      padding: 10px 14px;
+      min-width: 44px;
+      text-align: center;
+    }
+    .genre-link:hover, .title-link:hover {
+      background: #e94560;
+      color: white;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #e94560;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Browse Movies</h1>
+
+<!-- Browse by Genre：从数据库动态加载 -->
+<div class="browse-section">
+  <div class="section-title">By Genre</div>
+  <div id="genre-container">
+    <!-- browse.js 会在这里动态生成 genre 链接 -->
+  </div>
+</div>
+
+<!-- Browse by Title：固定的 A-Z, 0-9, * -->
+<div class="browse-section">
+  <div class="section-title">By Title</div>
+  <div id="title-container">
+    <a class="title-link" href="search.html?titleChar=A">A</a>
+    <a class="title-link" href="search.html?titleChar=B">B</a>
+    <a class="title-link" href="search.html?titleChar=C">C</a>
+    <a class="title-link" href="search.html?titleChar=D">D</a>
+    <a class="title-link" href="search.html?titleChar=E">E</a>
+    <a class="title-link" href="search.html?titleChar=F">F</a>
+    <a class="title-link" href="search.html?titleChar=G">G</a>
+    <a class="title-link" href="search.html?titleChar=H">H</a>
+    <a class="title-link" href="search.html?titleChar=I">I</a>
+    <a class="title-link" href="search.html?titleChar=J">J</a>
+    <a class="title-link" href="search.html?titleChar=K">K</a>
+    <a class="title-link" href="search.html?titleChar=L">L</a>
+    <a class="title-link" href="search.html?titleChar=M">M</a>
+    <a class="title-link" href="search.html?titleChar=N">N</a>
+    <a class="title-link" href="search.html?titleChar=O">O</a>
+    <a class="title-link" href="search.html?titleChar=P">P</a>
+    <a class="title-link" href="search.html?titleChar=Q">Q</a>
+    <a class="title-link" href="search.html?titleChar=R">R</a>
+    <a class="title-link" href="search.html?titleChar=S">S</a>
+    <a class="title-link" href="search.html?titleChar=T">T</a>
+    <a class="title-link" href="search.html?titleChar=U">U</a>
+    <a class="title-link" href="search.html?titleChar=V">V</a>
+    <a class="title-link" href="search.html?titleChar=W">W</a>
+    <a class="title-link" href="search.html?titleChar=X">X</a>
+    <a class="title-link" href="search.html?titleChar=Y">Y</a>
+    <a class="title-link" href="search.html?titleChar=Z">Z</a>
+    <a class="title-link" href="search.html?titleChar=0">0</a>
+    <a class="title-link" href="search.html?titleChar=1">1</a>
+    <a class="title-link" href="search.html?titleChar=2">2</a>
+    <a class="title-link" href="search.html?titleChar=3">3</a>
+    <a class="title-link" href="search.html?titleChar=4">4</a>
+    <a class="title-link" href="search.html?titleChar=5">5</a>
+    <a class="title-link" href="search.html?titleChar=6">6</a>
+    <a class="title-link" href="search.html?titleChar=7">7</a>
+    <a class="title-link" href="search.html?titleChar=8">8</a>
+    <a class="title-link" href="search.html?titleChar=9">9</a>
+    <a class="title-link" href="search.html?titleChar=*">*</a>
+  </div>
+</div>
+
+<a class="back-link" href="index.html">&larr; Back to Top 20</a>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/browse.js"></script>
+</body>
+</html>

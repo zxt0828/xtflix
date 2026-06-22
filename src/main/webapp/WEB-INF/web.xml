@@ -31,4 +31,31 @@
     <servlet-name>SingleStarServlet</servlet-name>
     <url-pattern>/api/single-star</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>xtflix.LoginServlet</servlet-class>w
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/api/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>xtflix.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/api/search</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GenreListServlet</servlet-name>
+    <servlet-class>xtflix.GenreListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenreListServlet</servlet-name>
+    <url-pattern>/api/genres</url-pattern>
+  </servlet-mapping>
 </web-app>
