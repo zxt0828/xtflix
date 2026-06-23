@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>xtflix - Shopping Cart</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #e94560;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    th {
+      background: #1a1a2e;
+      color: #e94560;
+      padding: 12px 15px;
+      text-align: left;
+      font-size: 14px;
+    }
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #1a1a2e;
+      font-size: 14px;
+    }
+    tr:hover { background: rgba(233, 69, 96, 0.05); }
+    a { color: #e94560; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .quantity-input {
+      width: 50px;
+      padding: 5px;
+      background: #16213e;
+      color: #e0e0e0;
+      border: 1px solid #333;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .update-btn, .remove-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      margin: 0 3px;
+    }
+    .update-btn {
+      background: #16213e;
+      color: #e0e0e0;
+      border: 1px solid #333;
+    }
+    .update-btn:hover {
+      border-color: #e94560;
+    }
+    .remove-btn {
+      background: #e94560;
+      color: white;
+    }
+    .remove-btn:hover {
+      background: #c73652;
+    }
+    .cart-actions {
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .checkout-btn {
+      padding: 12px 40px;
+      background: #e94560;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .checkout-btn:hover {
+      background: #c73652;
+    }
+    .empty-msg {
+      text-align: center;
+      color: #a0a0b0;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #e94560;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Shopping Cart</h1>
+
+<p class="empty-msg" id="empty-msg" style="display:none;">Your cart is empty.</p>
+
+<table id="cart-table" style="display:none;">
+  <thead>
+  <tr>
+    <th>Movie</th>
+    <th>Quantity</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody id="cart-body">
+  </tbody>
+</table>
+
+<div class="cart-actions" id="cart-actions" style="display:none;">
+  <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+</div>
+
+<a class="back-link" href="search.html">&larr; Continue Shopping</a>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

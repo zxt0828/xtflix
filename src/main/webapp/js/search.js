@@ -1,11 +1,8 @@
 // ============================================
-// search.js — 搜索 / Browse by Genre / Browse by Title + 排序分页
+// search.js — 搜索 / Browse by Genre / Browse by Title + 排序分页 + 加入购物车
 // ============================================
 
-// 当前页码，全局变量
 let currentPage = 1;
-
-// 当前的查询参数，翻页和改排序时复用
 let currentSearchParams = {};
 
 // ============================================
@@ -25,14 +22,12 @@ function renderMovies(movies) {
   $("#movie-table").show();
   $("#controls").css("display", "flex");
 
-  // 更新分页按钮状态
   $("#page-info").text("Page " + currentPage);
   if (currentPage <= 1) {
     $("#prev-btn").addClass("disabled");
   } else {
     $("#prev-btn").removeClass("disabled");
   }
-  // 如果返回的条数少于每页限制，说明没有下一页了
   let limit = parseInt($("#per-page").val());
   if (movies.length < limit) {
     $("#next-btn").addClass("disabled");
@@ -43,7 +38,7 @@ function renderMovies(movies) {
   for (let i = 0; i < movies.length; i++) {
     let movie = movies[i];
 
-    // 处理 genres — 可点击的标签
+    // 处理 genres
     let genresHtml = "";
     if (movie["genres"]) {
       let genres = movie["genres"].split(", ");
@@ -53,7 +48,7 @@ function renderMovies(movies) {
       }
     }
 
-    // 处理 stars（带超链接）
+    // 处理 stars
     let starsHtml = "";
     if (movie["stars"]) {
       let stars = movie["stars"].split(", ");
@@ -73,6 +68,7 @@ function renderMovies(movies) {
         "<td>" + genresHtml + "</td>" +
         "<td>" + starsHtml + "</td>" +
         "<td>" + movie["rating"] + "</td>" +
+        '<td><button class="add-cart-btn" data-movie-id="' + movie["id"] + '">Add</button></td>' +
         "</tr>";
 
     $("#movie-body").append(row);
@@ -80,13 +76,38 @@ function renderMovies(movies) {
 }
 
 // ============================================
-// 发送搜索请求（带排序分页参数）
+// 加入购物车按钮点击事件（事件委托）
+// ============================================
+$(document).on("click", ".add-cart-btn", function () {
+  let movieId = $(this).data("movie-id");
+  let btn = $(this);
+
+  $.ajax({
+    url: "api/cart",
+    method: "POST",
+    data: { action: "add", movieId: movieId },
+    dataType: "json",
+    success: function (result) {
+      btn.text("Added ✓");
+      btn.prop("disabled", true);
+      setTimeout(function () {
+        btn.text("Add");
+        btn.prop("disabled", false);
+      }, 1500);
+    },
+    error: function () {
+      alert("Failed to add to cart");
+    }
+  });
+});
+
+// ============================================
+// 发送搜索请求
 // ============================================
 function doSearch(searchParams, page) {
   currentPage = page;
   currentSearchParams = searchParams;
 
-  // 合并排序分页参数
   let requestData = $.extend({}, searchParams, {
     sort: $("#sort-by").val(),
     order: $("#sort-order").val(),
@@ -107,20 +128,18 @@ function doSearch(searchParams, page) {
 }
 
 // ============================================
-// 检查 URL 参数，决定模式
+// 检查 URL 参数
 // ============================================
 let urlParams = new URLSearchParams(window.location.search);
 let genreFromUrl = urlParams.get("genre");
 let titleCharFromUrl = urlParams.get("titleChar");
 
 if (genreFromUrl) {
-  // Browse by Genre 模式
   $(".search-form").hide();
   $("h1").text("Genre: " + genreFromUrl);
   doSearch({ genre: genreFromUrl }, 1);
 
 } else if (titleCharFromUrl) {
-  // Browse by Title 模式
   $(".search-form").hide();
   if (titleCharFromUrl === "*") {
     $("h1").text("Titles starting with: special characters");
@@ -131,7 +150,7 @@ if (genreFromUrl) {
 }
 
 // ============================================
-// 搜索按钮点击
+// 搜索按钮
 // ============================================
 $("#search-btn").click(function () {
   let searchParams = {
@@ -143,7 +162,6 @@ $("#search-btn").click(function () {
   doSearch(searchParams, 1);
 });
 
-// 回车触发搜索
 $(document).keypress(function (event) {
   if (event.which === 13) {
     $("#search-btn").click();
@@ -151,7 +169,7 @@ $(document).keypress(function (event) {
 });
 
 // ============================================
-// 分页按钮
+// 分页
 // ============================================
 $("#prev-btn").click(function () {
   if (currentPage > 1) {
@@ -164,7 +182,7 @@ $("#next-btn").click(function () {
 });
 
 // ============================================
-// 排序或每页条数改变时，回到第1页重新查
+// 排序/每页切换
 // ============================================
 $("#sort-by, #sort-order, #per-page").change(function () {
   doSearch(currentSearchParams, 1);

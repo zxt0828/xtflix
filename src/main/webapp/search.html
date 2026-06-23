@@ -58,8 +58,6 @@
     .search-btn:hover {
       background: #c73652;
     }
-
-    /* 排序和分页控件 */
     .controls {
       max-width: 1200px;
       margin: 0 auto 15px;
@@ -119,7 +117,6 @@
       color: #a0a0b0;
       font-size: 14px;
     }
-
     table {
       width: 100%;
       max-width: 1200px;
@@ -161,6 +158,22 @@
       margin-bottom: 15px;
       display: none;
     }
+    .add-cart-btn {
+      padding: 6px 14px;
+      background: #e94560;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .add-cart-btn:hover {
+      background: #c73652;
+    }
+    .add-cart-btn:disabled {
+      background: #4a4a5a;
+      cursor: default;
+    }
   </style>
 </head>
 <body>
@@ -188,7 +201,6 @@
 
 <p id="result-count"></p>
 
-<!-- 排序和分页控件 -->
 <div class="controls" id="controls">
   <div class="sort-group">
     <label>Sort by:</label>
@@ -223,6 +235,7 @@
     <th>Genres</th>
     <th>Stars</th>
     <th>Rating</th>
+    <th>Cart</th>
   </tr>
   </thead>
   <tbody id="movie-body">

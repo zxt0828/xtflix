@@ -58,4 +58,13 @@
     <servlet-name>GenreListServlet</servlet-name>
     <url-pattern>/api/genres</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>xtflix.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/api/cart</url-pattern>
+  </servlet-mapping>
 </web-app>
