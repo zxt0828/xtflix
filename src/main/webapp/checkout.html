@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>xtflix - Checkout</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #e94560;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .checkout-form {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      background: #1a1a2e;
+      padding: 30px;
+      border-radius: 12px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #a0a0b0;
+      font-size: 14px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #16213e;
+      color: #e0e0e0;
+      font-size: 15px;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: #e94560;
+    }
+    .pay-btn {
+      width: 100%;
+      padding: 12px;
+      background: #e94560;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .pay-btn:hover {
+      background: #c73652;
+    }
+    .pay-btn:disabled {
+      background: #4a4a5a;
+      cursor: default;
+    }
+    .error-msg {
+      color: #e94560;
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+    }
+    .success-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #1a1a2e;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+    }
+    .success-container h2 {
+      color: #4caf50;
+      margin-bottom: 20px;
+    }
+    .success-container table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .success-container th {
+      background: #16213e;
+      color: #e94560;
+      padding: 10px;
+      text-align: left;
+    }
+    .success-container td {
+      padding: 10px;
+      border-bottom: 1px solid #16213e;
+    }
+    .continue-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #e94560;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .continue-link:hover {
+      text-decoration: underline;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #e94560;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Checkout</h1>
+
+<!-- 信用卡表单 -->
+<div class="checkout-form" id="checkout-form">
+  <div class="form-group">
+    <label>Credit Card Number</label>
+    <input type="text" id="ccId" placeholder="e.g. 1234567890123456">
+  </div>
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" id="firstName" placeholder="e.g. John">
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" id="lastName" placeholder="e.g. Doe">
+  </div>
+  <div class="form-group">
+    <label>Expiration Date</label>
+    <input type="text" id="expiration" placeholder="e.g. 2025-12-31">
+  </div>
+  <button class="pay-btn" id="pay-btn">Pay Now</button>
+  <p class="error-msg" id="error-msg"></p>
+</div>
+
+<a class="back-link" id="back-to-cart" href="cart.html">&larr; Back to Cart</a>
+
+<!-- 成功确认页面（默认隐藏） -->
+<div class="success-container" id="success-container">
+  <h2>Purchase Successful!</h2>
+  <p>Thank you for your order. Here's your receipt:</p>
+  <table>
+    <thead>
+    <tr>
+      <th>Movie ID</th>
+      <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody id="receipt-body">
+    </tbody>
+  </table>
+  <a class="continue-link" href="search.html">&larr; Continue Shopping</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>
