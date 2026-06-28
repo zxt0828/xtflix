@@ -14,6 +14,20 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
       protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws IOException {
+        // 处理 logout
+        String action = request.getParameter("action");
+        if ("logout".equals(action)) {
+          HttpSession session = request.getSession(false);
+          if (session != null) {
+            session.invalidate();
+          }
+          JsonObject result = new JsonObject();
+          result.addProperty("status", "success");
+          result.addProperty("message", "Logged out");
+          response.setContentType("application/json");
+          response.getWriter().write(result.toString());
+          return;
+        }
         //取参数
         String email = request.getParameter("email");
         String password = request.getParameter("password");
